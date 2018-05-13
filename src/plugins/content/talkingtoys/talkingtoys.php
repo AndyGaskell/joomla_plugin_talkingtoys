@@ -109,7 +109,7 @@ class PlgContentTalkingtoys extends JPlugin
 			{
 				$float = $default_float;
 
-				#echo "<pre>match: " . print_r($match, TRUE) . "</pre>";
+				echo "<pre>match: " . print_r($match, TRUE) . "</pre>";
 
 				$temp_array = preg_split("/[\{}]+/", $match[0]);
 				#echo "<pre>temp_array: " . print_r($temp_array, TRUE) . "</pre>";
@@ -125,9 +125,9 @@ class PlgContentTalkingtoys extends JPlugin
 				foreach ($settings AS $setting) {
 					if ($setting == "L") {
 						$float = "left";
-					} elseif ( $settings == "R") {
+					} elseif ( $setting == "R") {
 						$float = "right";
-					} elseif ( $settings == "N") {
+					} elseif ( $setting == "N") {
 						$float = "none";
 					}
 
@@ -142,7 +142,7 @@ class PlgContentTalkingtoys extends JPlugin
 					$filename = $images_array[array_rand($images_array)];
 				}
 
-				#echo "<pre>float: " . $float . "</pre>";
+				echo "<pre>float: " . $float . "</pre>";
 				#echo "<pre>filename: " . $filename . "</pre>";
 
 				$output = "<div class=\"speech_box\" style=\"float: " . $float . "\">";
