@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="content" method="upgrade">
+	<name>Talking Toys</name>
+	<author>Andy Gaskell</author>
+	<creationDate>May 2018</creationDate>
+	<copyright>Copyright (C) 2018 Andy Gaskell. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>ag@ssofb.co.uk</authorEmail>
+	<authorUrl>www.ssofb.co.uk</authorUrl>
+	<version>3.0.0</version>
+	<description>PLG_LOADMODULE_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="talkingtoys">talkingtoys.php</filename>
+	</files>
+	<languages>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field
+					name="imagepath"
+					type="text"
+					label="Image directory"
+					description="Set this to where your images are."
+					default="media/plg_content_talkingtoys/"
+				/>   
+
+				<field
+					name="float"
+					type="radio"
+					label="Float position"
+					description="Do you want it to float left, right or neither?"
+					class="btn-group btn-group-yesno"
+					default="right"
+					>
+					<option value="right">Right</option>
+					<option value="left">Left</option>
+					<option value="none">No float</option>
+
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
