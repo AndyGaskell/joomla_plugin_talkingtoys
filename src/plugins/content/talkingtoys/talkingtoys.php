@@ -5,6 +5,8 @@
  *
  * @copyright   Copyright (C) 2018 SSOFB. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * 
+ * For more info, see https://github.com/AndyGaskell/joomla_plugin_talkingtoys
  */
 
 defined('_JEXEC') or die;
@@ -32,30 +34,17 @@ class PlgContentTalkingtoys extends JPlugin
 	 */
 	public function onContentPrepare($context, &$article, &$params, $page = 0)
 	{
-
-		// Expression to search for (positions)
-		#$regex = '/{talkingtoy\s(.*?)talkingtoy}/i';
-		
-		#$regex = "~{talkingtoy}.*?{/talkingtoy}~is";
-		#$regex = '/{talkingtoy\s(.*?){/talkingtoy}/i';
-		#$regex = '{talkingtoy.*?{/talkingtoy}';
-
-		#$regex = '/{talkingtoy}.*?{\/talkingtoy}/i';
-		#$regex = '/{talkingtoy.*?{\/talkingtoy}/i';
-		#$regex = '/{talkingtoy.*?{\/talkingtoy}/i';
-
+		# Expression to search for talkingtoy
 		$regex = '/{talkingtoy.*?{\/talkingtoy}/i';
 		
-
 		$imagepath = $this->params->def('imagepath', 'media/plg_content_talkingtoys/');
 
 		$default_float = $this->params->def('float', 'right');
 
-		// Find all instances of plugin and put in $matches for talkingtoy
-		// $matches[0] is full pattern match, $matches[1] is the position
+		# Find all instances of plugin and put in $matches for talkingtoy
 		preg_match_all($regex, $article->text, $matches, PREG_SET_ORDER);
 
-		// No matches, skip this
+		# No matches, skip this
 		if ($matches)
 		{
 			
@@ -73,12 +62,15 @@ class PlgContentTalkingtoys extends JPlugin
 				top: 0;
 				right: 0;
 				width: 200px;
-				height: 100px;
+				height: 80px;
 				text-align: center;
 				line-height: 100px;
 				background-color: #fff;
 				border: 4px solid #888;
 				border-radius: 30px;
+				line-height: 110%;
+				padding: 10px;
+				word-break: break-all;
 			  }
 			  div.speech:before {
 				content: ' ';
@@ -100,8 +92,6 @@ class PlgContentTalkingtoys extends JPlugin
 				border: 15px solid;
 				border-color: #fff transparent transparent #fff;
 			  }
-			  
-			 
 			  "; 
 			$document->addStyleDeclaration($style);
 			
@@ -109,7 +99,7 @@ class PlgContentTalkingtoys extends JPlugin
 			{
 				$float = $default_float;
 
-				echo "<pre>match: " . print_r($match, TRUE) . "</pre>";
+				#echo "<pre>match: " . print_r($match, TRUE) . "</pre>";
 
 				$temp_array = preg_split("/[\{}]+/", $match[0]);
 				#echo "<pre>temp_array: " . print_r($temp_array, TRUE) . "</pre>";
@@ -128,13 +118,12 @@ class PlgContentTalkingtoys extends JPlugin
 					} elseif ( $setting == "R") {
 						$float = "right";
 					} elseif ( $setting == "N") {
-						$float = "none";
+						$float = "none"; # need to fix this
 					}
 
 					if ( substr_count($setting, ".")) {
 						$filename = $imagepath . "/" . $setting;
 					}
-
 				}
 
 				if ( !$filename ) {
@@ -142,17 +131,21 @@ class PlgContentTalkingtoys extends JPlugin
 					$filename = $images_array[array_rand($images_array)];
 				}
 
-				echo "<pre>float: " . $float . "</pre>";
+				#echo "<pre>float: " . $float . "</pre>";
 				#echo "<pre>filename: " . $filename . "</pre>";
+
+				# work out the text size, shorter strings need to be bigger
+				$char_count = strlen($speech_bubble_text);
+				$size = 45 - ($char_count / 3.1);
 
 				$output = "<div class=\"speech_box\" style=\"float: " . $float . "\">";
 				$output .= "<img src=\"" . $filename . "\" />";
-				$output .= "<div class=\"speech\">";
+				$output .= "<div class=\"speech\" style=\"font-size:  " . $size . "px \">";
 				$output .= $speech_bubble_text;
 				$output .= "</div>";
 				$output .= "</div>";
 
-				// We should replace only first occurrence in order to allow positions with the same name to regenerate their content:
+				# We should replace only first occurrence in order to allow positions with the same name to regenerate their content:
 				$article->text = str_replace($match[0], $output, $article->text);
 			}
 		}

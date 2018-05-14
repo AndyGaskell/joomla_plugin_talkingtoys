@@ -6,7 +6,7 @@ I had a long late night wait in Schipol airport, on the way back from J and Beyo
 
 ## Usage examples
 
-{talkingtoy}Hey, like, hello word, or something{/talkingtoy}
+{talkingtoy}Hey, like, hello world, or something{/talkingtoy}
 
 {talkingtoy}Yo, sup dude{/talkingtoy}
 
@@ -23,3 +23,14 @@ I had a long late night wait in Schipol airport, on the way back from J and Beyo
 {talkingtoy R}I'm floating right{/talkingtoy}
 
 {talkingtoy N}I'm not floating{/talkingtoy}
+
+
+## Notes and docs
+* https://docs.joomla.org/Deploying_an_Update_Server
+* https://docs.joomla.org/Help37:Extensions_Extension_Manager_Update
+* https://joomla.org/
+* https://extensions.joomla.org/
+* https://downloads.joomla.org/
+* http://rogerdudler.github.io/git-guide/
+* https://github.com/joomla-framework/image 
+* https://github.com/AndyGaskell/joomla_plugin_talkingtoys
